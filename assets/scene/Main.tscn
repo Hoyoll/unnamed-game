@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/sprite/industrial/6. Character Animations 32p/Anim_Robot_Walk1_v1.1_spritesheet.png" type="Texture" id=1]
-[ext_resource path="res://assets/scene/Player.gd" type="Script" id=2]
+[ext_resource path="res://assets/script/Player.gd" type="Script" id=2]
 [ext_resource path="res://assets/sprite/industrial/6. Character Animations 32p/Anim_Robot_Jump1_v1.1_frames/1.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
