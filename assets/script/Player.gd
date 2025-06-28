@@ -1,41 +1,34 @@
 extends KinematicBody2D
 
+# Movement variables
+var velocity = Vector2()
+var speed = 200
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+# Gravity settings
+var gravity = 800  # Pixels per second squared
+var jump_force = -400
 
-export var speed = 200
-var velocity = Vector2.ZERO
+# Ground detection
+var is_on_floor = false
 
-func _physics_process(_delta):
-	velocity = Vector2.ZERO
+func _physics_process(delta):
+	# Apply gravity
+	velocity.y += gravity * delta
+
+	# Horizontal movement (left/right)
+	velocity.x = 0
 	if Input.is_action_pressed("ui_right"):
-		velocity.x += 1
-		$AnimatedSprite.flip_h = false
+		velocity.x += speed
 	elif Input.is_action_pressed("ui_left"):
-		velocity.x -= 1
-		$AnimatedSprite.flip_h = true
+		velocity.x -= speed
 
-	if Input.is_action_pressed("ui_down"):
-		velocity.y += 1
-	elif Input.is_action_pressed("ui_up"):
-		velocity.y -= 1
-
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
-		$AnimatedSprite.play("walk")
-	else:
-		$AnimatedSprite.play("idle")
-
-	move_and_slide(velocity)
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	# Jump
+	if is_on_floor and Input.is_action_just_pressed("ui_up"):
+		velocity.y = jump_force
+	if Input.is_action_just_pressed("ui_accept"):
+		var tilemap = get_parent().get_node("TileMap")
+		var cell = tilemap.world_to_map(global_position)
+		tilemap.set_cellv(cell, 0)  # Place tile with ID 0# 0 = tile ID from your TileSet
+	# Move and check if on floor
+	velocity = move_and_slide(velocity, Vector2.UP)
+	is_on_floor = is_on_floor()
