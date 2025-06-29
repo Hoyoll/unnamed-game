@@ -3,32 +3,62 @@ extends KinematicBody2D
 # Movement variables
 var velocity = Vector2()
 var speed = 300
+var PLAYER_DIR = Direction.LEFT
 # Gravity settings
-var gravity = 800  # Pixels per second squared
+var gravity = 1000  # Pixels per second squared
 var jump_force = -400
 
-# Ground detection
-var is_on_floor = false
-
+enum Player { 
+	IDLE = -1, 
+	WALKING = -2,
+	JUMPING = -3,
+	FALLING = -4,
+}
+enum Direction {
+	RIGHT = 100,
+	LEFT = 101,
+}
+	
 func _physics_process(delta):
-	# Apply gravity
+	#this is gravity
 	velocity.y += gravity * delta
-
-	# Horizontal movement (left/right)
 	velocity.x = 0
-	if Input.is_action_pressed("ui_right"):
-		velocity.x += speed
-	elif Input.is_action_pressed("ui_left"):
-		velocity.x -= speed
-
-	# Jump
-	if Input.is_action_just_pressed("ui_up"):
-		velocity.y = jump_force
-	if Input.is_action_just_pressed("ui_accept"):
-		var tilemap = get_parent().get_node("TileMap")
-		var mouse_pos = get_global_mouse_position()
-		var cell = tilemap.world_to_map(mouse_pos)
-		tilemap.set_cellv(cell, 0)  # Place tile with ID 0# 0 = tile ID from your TileSet
-	# Move and check if on floor
+	handle_state(handle_io())
 	velocity = move_and_slide(velocity, Vector2.UP)
-	is_on_floor = is_on_floor()
+
+func flip():
+	$AnimatedSprite.flip_h = PLAYER_DIR == Direction.LEFT
+
+func handle_io() -> Array:
+	var io = []
+	var floored = is_on_floor()
+	io.append(floored)
+	if Input.is_action_pressed("ui_right"):
+		PLAYER_DIR = Direction.RIGHT
+		io.append(Direction.RIGHT)
+	elif Input.is_action_pressed("ui_left"):
+		PLAYER_DIR = Direction.LEFT
+		io.append(Direction.LEFT)
+	else: 
+		io.append(Player.IDLE)
+	if Input.is_action_pressed("ui_up"):
+		io.append(Player.JUMPING)
+	flip()
+	return io
+
+func handle_state(data: Array):
+	match data:
+		[_, Direction.RIGHT]:
+			$AnimatedSprite.play("walk")
+			velocity.x = speed
+		[_, Direction.LEFT]:
+			$AnimatedSprite.play("walk")
+			velocity.x = -speed
+		[true, Player.IDLE]:
+			$AnimatedSprite.play("idle")
+			velocity.x = 0
+		[true, _, Player.JUMPING]:
+			velocity.y = jump_force
+		_:
+			$AnimatedSprite.play("idle")			
+			velocity.x = 0  # default fallback
