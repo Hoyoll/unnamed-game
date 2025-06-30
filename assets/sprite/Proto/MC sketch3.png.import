@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/4. License.png-f369cf497ca560512a3a47dbad182d52.stex"
+path="res://.import/MC sketch3.png-7d5e92fc57c5300f04aee66fc42dc9e3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprite/4. License.png"
-dest_files=[ "res://.import/4. License.png-f369cf497ca560512a3a47dbad182d52.stex" ]
+source_file="res://assets/sprite/Proto/MC sketch3.png"
+dest_files=[ "res://.import/MC sketch3.png-7d5e92fc57c5300f04aee66fc42dc9e3.stex" ]
 
 [params]
 
