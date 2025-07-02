@@ -35,20 +35,16 @@ func _process(_delta):
 
 func _input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
-		print("here!")
+		#print("here!")
 		shoot()
 
 
 func shoot():
 	var bullet = BulletScene.instance()
-	#get_tree().current_scene.add_child(bullet)
-	get_parent().add_child(bullet)
+	get_parent().get_parent().add_child(bullet)
 	var muzzle = $Position2D
 	bullet.global_position = muzzle.global_position
 	var dir = (get_global_mouse_position() - muzzle.global_position).normalized()
-	#bullet.transform = muzzle.transform 
-	bullet.direction = dir
-	#bullet.global_position = muzzle.global_position
-	#bullet.direction = (get_global_mouse_position() - bullet.global_position).normalized()
+	bullet.direction = dir 
 
 	

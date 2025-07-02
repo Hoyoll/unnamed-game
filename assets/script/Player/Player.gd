@@ -3,6 +3,7 @@ extends KinematicBody2D
 onready var player_sprite = $AnimatedSprite
 onready var wrench_sprite = $Wrench/AnimatedSprite
 # Movement variables
+var brick = preload("res://assets/scene/Brick/Brick.tscn")
 var velocity = Vector2()
 var speed = 250
 var PLAYER_DIR = Direction.LEFT
@@ -10,7 +11,7 @@ var PLAYER_DIR = Direction.LEFT
 var gravity = 1200  # Pixels per second squared
 var jump_force = -80
 const JUMP_MOD = 3
-var JUMP_BUFF := 0.0
+var JUMP_BUFF := 3.0
 enum Player { 
 	IDLE = -1, 
 	WALKING = -2,
@@ -24,8 +25,13 @@ enum Direction {
 }
 
 func _ready():
+	var brscn = brick.instance()
+	brscn.connect("bounce_stepped", self, "jump")
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-
+	
+func jump():
+	velocity.y = jump_force * 3
+	print("here!")
 	
 func _physics_process(delta):
 	#this is gravity
@@ -60,9 +66,9 @@ func handle_io() -> Array:
 		io.append(Player.IDLE)
 		
 	# Ngambil apakah button lompat di tekan
-	if Input.is_action_pressed("ui_up"):
-		io.append(Player.BUFFERING)
-	if Input.is_action_just_released("ui_up"):
+#	if Input.is_action_pressed("ui_up"):
+#		io.append(Player.BUFFERING)
+	if Input.is_action_just_pressed("ui_up"):
 		io.append(Player.JUMPING)
 	flip()
 	return io
@@ -91,7 +97,7 @@ func handle_state(data: Array):
 			#velocity.y = jump_force
 		[true, _, Player.JUMPING]:
 			velocity.y = jump_force * JUMP_BUFF
-			JUMP_BUFF = 0.0
+#			JUMP_BUFF = 0.0
 		_:
 			$AnimatedSprite.play("idle")			
 			velocity.x = 0  # default fallback
