@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/4. License.png-f369cf497ca560512a3a47dbad182d52.stex"
+path="res://.import/blocks proto1.png-cc4d63a333f18aae7f3563e78e9156be.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprite/4. License.png"
-dest_files=[ "res://.import/4. License.png-f369cf497ca560512a3a47dbad182d52.stex" ]
+source_file="res://assets/sprite/Proto/Block/blocks proto1.png"
+dest_files=[ "res://.import/blocks proto1.png-cc4d63a333f18aae7f3563e78e9156be.stex" ]
 
 [params]
 
