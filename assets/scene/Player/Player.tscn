@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/sprite/Proto/MC sketch3b.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprite/Proto/Block/blocks proto1.png" type="Texture" id=2]
 [ext_resource path="res://assets/script/Player/Player.gd" type="Script" id=3]
 [ext_resource path="res://assets/script/Player/Wrench.gd" type="Script" id=4]
 
@@ -58,6 +59,44 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="AtlasTexture" id=23]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 16, 8, 8 )
+
+[sub_resource type="AtlasTexture" id=24]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 32, 8, 8 )
+
+[sub_resource type="AtlasTexture" id=25]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 8, 8 )
+
+[sub_resource type="SpriteFrames" id=22]
+animations = [ {
+"frames": [ SubResource( 23 ) ],
+"loop": true,
+"name": "0",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 24 ) ],
+"loop": true,
+"name": "1",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 25 ) ],
+"loop": true,
+"name": "2",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "empty",
+"speed": 5.0
+} ]
+
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 241, 399 )
 script = ExtResource( 3 )
@@ -78,7 +117,7 @@ animation = "jump"
 position = Vector2( 4, 19 )
 script = ExtResource( 4 )
 aim_line_length = 83
-aim_line_width = 1.0
+aim_line_width = 3.0
 
 [node name="Position2D" type="Position2D" parent="Wrench"]
 
@@ -86,3 +125,9 @@ aim_line_width = 1.0
 position = Vector2( 2, -2 )
 frames = SubResource( 16 )
 animation = "idle"
+
+[node name="BulletBall" type="AnimatedSprite" parent="Wrench"]
+position = Vector2( 3.8147e-06, -0.99999 )
+scale = Vector2( 0.937497, 0.937502 )
+frames = SubResource( 22 )
+animation = "2"
