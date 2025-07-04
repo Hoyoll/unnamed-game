@@ -39,8 +39,13 @@ func flip():
 	player_sprite.flip_h = PLAYER_DIR == Direction.LEFT
 	wrench_sprite.flip_v = PLAYER_DIR == Direction.RIGHT
 	
+func reload():
+	get_tree().change_scene(get_tree().current_scene.filename)
 
 func handle_io() -> Array:
+	if Input.is_action_pressed("ui_accept"):
+		reload()
+		pass
 	var io = []
 	var floored = is_on_floor()
 	# Ngambil apakah player grounded
@@ -62,18 +67,11 @@ func handle_io() -> Array:
 
 func handle_state(data: Array):
 	match data:
-		[true, Direction.RIGHT]:
+		[_, Direction.RIGHT]:
 			$AnimatedSprite.play("walk")
 			velocity.x = speed
-		[true, Direction.LEFT]:
+		[_, Direction.LEFT]:
 			$AnimatedSprite.play("walk")
-			velocity.x = -speed
-		
-		[false, Direction.RIGHT]:
-			#$AnimatedSprite.play("walk")
-			velocity.x = speed
-		[false, Direction.LEFT]:
-			#$AnimatedSprite.play("walk")
 			velocity.x = -speed
 		[true, Player.IDLE]:
 			$AnimatedSprite.play("idle")

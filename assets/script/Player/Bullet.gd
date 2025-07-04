@@ -52,5 +52,5 @@ func place_tile():
 			queue_free()						
 			brick.BRICK_TYPE = BULLET_TYPE			
 			get_parent().add_child(brick)
-			var adjusted_hit_pos = hit_pos + Vector2(-tilemap.cell_size.x / 2, -tilemap.cell_size.y / 2)			
-			brick.global_position = adjusted_hit_pos
+			#var adjusted_hit_pos = hit_pos + Vector2(-tilemap.cell_size.x / 2, -tilemap.cell_size.y / 2)			
+			brick.global_position = hit_pos
