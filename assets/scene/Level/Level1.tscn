@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/scene/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sprite/Proto/MC sketch3.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprite/Proto/Block/blocks proto1.png" type="Texture" id=3]
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -53,11 +54,34 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 } ]
 1/z_index = 0
 
+[sub_resource type="TileSet" id=4]
+0/name = "blocks proto1.png 0"
+0/texture = ExtResource( 3 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 16, 32, 144, 16 )
+0/tile_mode = 2
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 16, 16 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
 [node name="Level1" type="Node2D"]
 position = Vector2( 22, 19 )
 scale = Vector2( 0.996584, 1 )
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="TileMap" parent="." groups=["solid"]]
 position = Vector2( 1.00343, 0 )
 tile_set = SubResource( 1 )
 cell_size = Vector2( 16, 16 )
@@ -68,3 +92,9 @@ tile_data = PoolIntArray( 65576, 0, 0, 65577, 0, 0, 131112, 0, 0, 131113, 0, 0, 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 262, 289 )
 scale = Vector2( 1.00596, 1 )
+
+[node name="Back" type="TileMap" parent="."]
+tile_set = SubResource( 4 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 851988, 0, 0, 851989, 0, 0, 917524, 0, 0, 917525, 0, 0, 983060, 0, 0, 983061, 0, 0, 1048596, 0, 0, 1048597, 0, 0, 1114132, 0, 0, 1114133, 0, 0, 1179668, 0, 0, 1245200, 0, 0, 1245201, 0, 0, 1245202, 0, 0, 1245203, 0, 0 )

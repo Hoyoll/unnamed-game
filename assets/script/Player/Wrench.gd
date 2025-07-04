@@ -63,7 +63,6 @@ func _input(event):
 
 func shoot():
 	if ammo.size() == 0:
-		print("empty!")
 		return
 	var bullet = BulletScene.instance()
 	get_parent().get_parent().add_child(bullet)

@@ -45,9 +45,11 @@ func place_tile():
 		var collider = collision.collider
 				
 		if collider is TileMap:
-			queue_free()			
 			var tilemap = collider as TileMap
+			if not tilemap.is_in_group("solid"):
+				return
 			var brick = BRICK_INST.instance()
+			queue_free()						
 			brick.BRICK_TYPE = BULLET_TYPE			
 			get_parent().add_child(brick)
 			var adjusted_hit_pos = hit_pos + Vector2(-tilemap.cell_size.x / 2, -tilemap.cell_size.y / 2)			

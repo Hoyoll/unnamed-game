@@ -28,10 +28,5 @@ func behaviour(delta):
 			texture.play("spring_idle")
 			pass
 		TYPE.TEMP:
-			var limit = 10
-			var time = 0
-			if time >= limit:
-				queue_free()
-			time += delta
 			texture.play("temp")
 			pass
