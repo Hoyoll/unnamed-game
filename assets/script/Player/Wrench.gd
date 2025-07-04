@@ -11,6 +11,7 @@ var ammo = [0, 1, 2];
 var current_bull = 0
 
 func _ready():
+	ammo.shuffle()
 #	ammo.append_array([0,1,2])
 	update()  # Draw immediately
 
@@ -57,12 +58,6 @@ func _input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
 		#print("here!")
 		shoot()
-	if event is InputEventMouseButton and event.pressed:
-		print("here!")
-		if event.button_index == BUTTON_WHEEL_UP:
-			cycle_item_bar(-1)
-		if event.button_index == BUTTON_WHEEL_DOWN:
-			cycle_item_bar(1)
 
 	
 
