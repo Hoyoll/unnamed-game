@@ -10,7 +10,7 @@ extends Node2D
 func _ready():
 	$AnimationPlayer.play("anim")
 	yield($AnimationPlayer, "animation_finished")
-	get_tree().change_scene("res://assets/scene/MainMenu/MainMenu.tscn")
+	get_tree().change_scene("res://assets/scene/Level/Puzzle_1.tscn")
 	pass # Replace with function body.
 
 
