@@ -7,7 +7,7 @@ export var BULLET_TYPE = 0
 var velocity = Vector2.ZERO
 var gravity = 1000
 var speed = 750
-var limit = 30
+var limit = 20
 var zero = 0
 
 func _physics_process(delta):
@@ -48,9 +48,14 @@ func place_tile():
 			var tilemap = collider as TileMap
 			if not tilemap.is_in_group("solid"):
 				return
+			queue_free()									
 			var brick = BRICK_INST.instance()
-			queue_free()						
-			brick.BRICK_TYPE = BULLET_TYPE			
+			brick.BRICK_TYPE = BULLET_TYPE
+			var adjusted_hit_pos			
+			if position.x < hit_pos.x: 
+				adjusted_hit_pos = hit_pos + Vector2(-tilemap.cell_size.x / 2, -tilemap.cell_size.y / 2)
+			else:
+				adjusted_hit_pos = hit_pos + Vector2(tilemap.cell_size.x / 2, -tilemap.cell_size.y / 2)			
+			brick.global_position = adjusted_hit_pos
 			get_parent().add_child(brick)
-			#var adjusted_hit_pos = hit_pos + Vector2(-tilemap.cell_size.x / 2, -tilemap.cell_size.y / 2)			
-			brick.global_position = hit_pos
+

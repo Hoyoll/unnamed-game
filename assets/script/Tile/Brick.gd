@@ -19,7 +19,7 @@ func on_player_stepped() -> Array:
 			return [true, 100, -6]
 		_:
 			return []
-func behaviour(delta):
+func behaviour(_delta):
 	match BRICK_TYPE:
 		TYPE.DEF:
 			texture.play("idle")

@@ -8,7 +8,7 @@ var speed = 250
 var PLAYER_DIR = Direction.LEFT
 # Gravity settings
 var gravity = 1200  # Pixels per second squared
-var jump_force = -120
+var jump_force = -150
 const JUMP_MOD = 3
 var JUMP_BUFF := 3.0
 enum Player { 
