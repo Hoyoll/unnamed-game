@@ -10,7 +10,8 @@ config_version=4
 
 [application]
 
-run/main_scene="res://assets/scene/Pause/PauseMenu.tscn"
+run/main_scene="res://assets/scene/MainMenu/MainMenu.tscn"
+
 config/icon="res://icon.png"
 
 [display]
@@ -18,6 +19,10 @@ config/icon="res://icon.png"
 window/size/width=1920
 window/size/height=1080
 window/size/fullscreen=true
+
+[global]
+
+main_scene=false
 
 [gui]
 
