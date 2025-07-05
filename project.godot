@@ -11,7 +11,6 @@ config_version=4
 [application]
 
 run/main_scene="res://assets/scene/MainMenu/MainMenu.tscn"
-
 config/icon="res://icon.png"
 
 [display]

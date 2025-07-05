@@ -8,7 +8,8 @@ func _ready():
 
 func _change_level(body):
 	if body.name == "Player":
-		print("Finished!")
+		get_tree().change_scene("res://assets/scene/MainMenu/Ending.tscn")
+		#print("Finished!")
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
